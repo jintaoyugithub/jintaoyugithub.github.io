@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light dark">
   
-  <title>Archives - jintaoyu blog</title>
+  <title>jintaoyu blog</title>
   
     <link rel="shortcut icon" href="/favicon.png">
   
@@ -16,11 +16,11 @@
   
   
   
-  <meta property="og:title" content="Archives - jintaoyu blog" />
+  <meta property="og:title" content="jintaoyu blog" />
   
   <meta property="og:type" content="website" />
   
-  <meta property="og:url" content="https://jintaoyugithub.github.io/archives/index.html" />
+  <meta property="og:url" content="https://jintaoyugithub.github.io/markdown.html" />
   
   <meta property="og:image" content="/favicon.png" />
   
@@ -70,10 +70,6 @@
 <link rel="stylesheet" href="/css/post.css">
 
   
-  
-  
-<link rel="stylesheet" href="/css/archive.css">
-
   
   
   
@@ -151,60 +147,102 @@
         </div>
     </div>
 </nav>
-        <div class="container">
+        
+<article class="post">
     <div class="meta">
-        <div class="type">
-            
-            
-        </div>
+        
 
-        <h2 class="title">Archives</h2>
+        
+        <div class="date" id="date">
+            <span>December</span>
+            <span>21,</span>
+            <span>2023</span>
+        </div>
+        
+
+        <h2 class="title"></h2>
     </div>
 
     <div class="divider"></div>
 
-    <div class="post-list archives">
-        
-        <article class="post-list-item">
-            <a href="/2023/12/21/markdown/">
-                
-                <div class="content">
-                    
-                    <div class="title">
-                        markdown
-                    </div>
-                    
-                    <div class="time">
-                        <span>December</span>
-                        <span>&nbsp;21,&nbsp;</span>
-                        <span>2023</span>
-                    </div>
-                </div>
-            </a>
-        </article>
-        
-        <article class="post-list-item">
-            <a href="/2023/12/20/git/">
-                
-                <div class="content">
-                    
-                    <div class="title">
-                        
-                    </div>
-                    
-                    <div class="time">
-                        <span>December</span>
-                        <span>&nbsp;20,&nbsp;</span>
-                        <span>2023</span>
-                    </div>
-                </div>
-            </a>
-        </article>
-        
+    <div class="content">
+        <h1 id="Markdown-notes"><a href="#Markdown-notes" class="headerlink" title="Markdown notes"></a>Markdown notes</h1><h2 id="Basic-font-setting"><a href="#Basic-font-setting" class="headerlink" title="Basic font setting"></a>Basic font setting</h2><p><code>* *</code>: for <em>italic</em> word</p>
+<p><code>** **</code>: for <em><strong>bold</strong></em> word</p>
+<p><code>``</code>: for <code>hightlight</code> word</p>
+<p><code>~~ ~~</code>: for <del>strikethrough</del> word</p>
+<p><code>&lt;font color=&#39;color scheme&#39;&gt; text &lt;/font&gt;</code>: for change <font color='red'> color </font> </p>
+<h1 id="headline-1"><a href="#headline-1" class="headerlink" title="headline 1"></a>headline 1</h1><h2 id="headline-2"><a href="#headline-2" class="headerlink" title="headline 2"></a>headline 2</h2><h3 id="headline-3"><a href="#headline-3" class="headerlink" title="headline 3"></a>headline 3</h3><h4 id="headline-4"><a href="#headline-4" class="headerlink" title="headline 4"></a>headline 4</h4><h5 id="headline-5"><a href="#headline-5" class="headerlink" title="headline 5"></a>headline 5</h5><h6 id="headline-6"><a href="#headline-6" class="headerlink" title="headline 6"></a>headline 6</h6><h2 id="links"><a href="#links" class="headerlink" title="links"></a>links</h2><h3 id="url-link"><a href="#url-link" class="headerlink" title="url link"></a>url link</h3><p><code>[link description](url)</code>: for <a target="_blank" rel="noopener" href="https://www.google.com/">url link</a> </p>
+<h3 id="image-link"><a href="#image-link" class="headerlink" title="image link"></a>image link</h3><p><code>![image description](path/to/the/image)</code>: for insert a image into current file</p>
+<h3 id="reference-url-image-link"><a href="#reference-url-image-link" class="headerlink" title="reference url&#x2F;image link"></a>reference url&#x2F;image link</h3><p><code>[reference link]: url</code>: for if you have multiple links to the same webpage, e.g. </p>
+<p><a target="_blank" rel="noopener" href="https://www.google.com/">here is a link to google</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/">here is a link to youtube</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.google.com/">here is a link also to google</a></p>
+<p>don’t forget to write these lines at the bottom of the document</p>
+<p><code>[linkToGoogle]: https://www.google.com/</code> </p>
+<p><code>[linkToYoutube]: https://www.youtube.com/</code> </p>
+<h2 id="text"><a href="#text" class="headerlink" title="text"></a>text</h2><p><code>&gt;</code>:   </p>
+<blockquote>
+<p>for block quotes, keep in mind that it only works when &gt; is placed at the beginning of a line</p>
+</blockquote>
+<p><code>&gt; in multiple lines</code> </p>
+<blockquote>
+<p>if you have multiple line need to be blocked</p>
+<p>then you placed the caret character at the beginning of each line</p>
+<p>even blank lines should be included</p>
+</blockquote>
+<p><code>* list name</code>: for create an unordered list</p>
+<ul>
+<li>cpp</li>
+<li>python</li>
+<li>opengl</li>
+<li>rust</li>
+</ul>
+<p><code>num list name</code>: for create an ordered list</p>
+<ol>
+<li>cpp</li>
+<li>python</li>
+<li>opengl</li>
+<li>rust</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">*</span><br><span class="line"> * : to add sub-lists to the main lists</span><br></pre></td></tr></table></figure>
+<ul>
+<li>programing language<ul>
+<li>cpp</li>
+<li>python</li>
+</ul>
+</li>
+</ul>
+<p><code>inserting two spaces after each new line</code>: for formatting paragraphs</p>
+<p>This is paragraphs without two spaces after each new line</p>
+<p>but forcefully insert a new line</p>
+<p>This is paragraphs witht two spaces after each new line<br>and without inserting a new line  </p>
+<h2 id="math"><a href="#math" class="headerlink" title="math"></a>math</h2><p><code>$ $</code>: for in-line math, e.g. $f(x) &#x3D; x^2$</p>
+<p><code>$$ $$</code>: for math blocks<br>$$<br>    \int_0^\infty \frac{x^3}{e^x-1},dx &#x3D; \frac{\pi^4}{15}<br>$$</p>
+<p><code>\\</code>: for start a new line in math blocks<br>$$<br>a_1&#x3D;b_1+c_1\<br>a_2&#x3D;b_2+c_2-d_2+e_2<br>$$</p>
+
     </div>
 
     
-</div>
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Jintao Yu, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        <a class="next"></a>
+        <a class="prev"></a>
+    </div>
+
+    
+        
+        
+    
+</article>
+
         <footer>
     <div class="inner">
         <div class="links">
