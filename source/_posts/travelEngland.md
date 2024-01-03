@@ -2,6 +2,7 @@
 title: Travel England
 date: 2023-12-28 09:36:54
 tags:
+cover_image: /imgs/coverImgs/travelEngland.jpg
 ---
 
 _**Westminster Abbey**_:

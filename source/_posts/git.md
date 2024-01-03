@@ -2,7 +2,7 @@
 title: Git Notes
 date: 2023-12-21 20:35:19
 tags:
-cover_image_alt:
+cover_image: /imgs/coverImgs/git.jpg
 ---
 
 **Note**: {} means doesn't need ""

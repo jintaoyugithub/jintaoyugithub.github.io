@@ -3,6 +3,7 @@ title: Markdown Notes
 date: 2023-12-21 12:11:01
 tags:
 mathjax: true
+cover_image: /imgs/coverImgs/markdown.jpg
 ---
 
 ## Basic font setting 
