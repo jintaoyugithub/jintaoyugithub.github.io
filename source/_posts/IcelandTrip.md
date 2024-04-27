@@ -1,5 +1,5 @@
 ---
-title: IcelandTrip
+title: Iceland Trip
 katex: false
 mathjax: false
 date: 2024-04-27 14:42:02
