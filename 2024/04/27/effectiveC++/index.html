@@ -146,7 +146,18 @@
     <div class="divider"></div>
 
     <div class="content">
-        
+        <h1 id="序言随记"><a href="#序言随记" class="headerlink" title="序言随记"></a>序言随记</h1><h2 id="01-显示的申明构造函数"><a href="#01-显示的申明构造函数" class="headerlink" title="01. 显示的申明构造函数"></a>01. 显示的申明构造函数</h2><p><strong>好处:</strong> </p>
+<ul>
+<li>阻止无法预知的隐式转换</li>
+</ul>
+<p>Things you should know:</p>
+<ul>
+<li>default构造函数，要不是没有参数，要么就是参数都有省值，比如</li>
+</ul>
+ <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">A</span>();          <span class="comment">// default</span></span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> x = <span class="number">0</span>); <span class="comment">// default</span></span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> x);     <span class="comment">// non-default</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> PS: 更多有关转型的tips请看本书条款27</p>
+<h2 id="02-copy-constructor-and-copy-assignment"><a href="#02-copy-constructor-and-copy-assignment" class="headerlink" title="02. copy constructor and copy assignment"></a>02. copy constructor and copy assignment</h2><h2 id="条款1：视c-为语言联邦而不是单一的语言"><a href="#条款1：视c-为语言联邦而不是单一的语言" class="headerlink" title="条款1：视c++为语言联邦而不是单一的语言"></a>条款1：视c++为语言联邦而不是单一的语言</h2><h2 id="条款2：尽量使用const，enum，inline替换-define"><a href="#条款2：尽量使用const，enum，inline替换-define" class="headerlink" title="条款2：尽量使用const，enum，inline替换 #define"></a>条款2：尽量使用const，enum，inline替换 #define</h2><h2 id="条款3：尽量使用const"><a href="#条款3：尽量使用const" class="headerlink" title="条款3：尽量使用const"></a>条款3：尽量使用const</h2><h2 id="条款4：确定对象在被使用前已被初始化"><a href="#条款4：确定对象在被使用前已被初始化" class="headerlink" title="条款4：确定对象在被使用前已被初始化"></a>条款4：确定对象在被使用前已被初始化</h2>
     </div>
 
     
