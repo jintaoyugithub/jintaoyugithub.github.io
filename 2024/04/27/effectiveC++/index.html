@@ -146,18 +146,65 @@
     <div class="divider"></div>
 
     <div class="content">
-        <h1 id="序言随记"><a href="#序言随记" class="headerlink" title="序言随记"></a>序言随记</h1><h2 id="01-显示的申明构造函数"><a href="#01-显示的申明构造函数" class="headerlink" title="01. 显示的申明构造函数"></a>01. 显示的申明构造函数</h2><p><strong>好处:</strong> </p>
+        <blockquote>
+<p>写这篇笔记的主要原因并不是为了记下所有的内容，而是更像是一个导读的作用，我会用自己的语言写下每个规则都在介绍什么，尝试解决什么样的问题，出现了什么新颖的解决办法&#x2F;思路，为什么要这么做，如果不这么做会导致什么问题以及在书中碰到了什么不懂得概念。具体细节请返回原书，没有必要把书上有的代码再重复一遍。我觉得这是一个尽最大限度帮我整理整书的内容，并且在今后遇到类似问题的时候提供一个方法册。</p>
+</blockquote>
+<h1 id="序言随记"><a href="#序言随记" class="headerlink" title="序言随记"></a>序言随记</h1><h2 id="01-显示的申明构造函数"><a href="#01-显示的申明构造函数" class="headerlink" title="01. 显示的申明构造函数"></a>01. 显示的申明构造函数</h2><p><strong>好处:</strong> </p>
 <ul>
 <li>阻止无法预知的隐式转换</li>
 </ul>
 <p>Things you should know:</p>
 <ul>
-<li>default构造函数，要不是没有参数，要么就是参数都有省值，比如</li>
+<li>default构造函数，要不是没有参数，要么就是参数都有缺省值，比如</li>
 </ul>
  <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">A</span>();          <span class="comment">// default</span></span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> x = <span class="number">0</span>); <span class="comment">// default</span></span><br><span class="line">    <span class="built_in">A</span>(<span class="type">int</span> x);     <span class="comment">// non-default</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p> PS: 更多有关转型的tips请看本书条款27</p>
-<h2 id="02-copy-constructor-and-copy-assignment"><a href="#02-copy-constructor-and-copy-assignment" class="headerlink" title="02. copy constructor and copy assignment"></a>02. copy constructor and copy assignment</h2><h2 id="条款1：视c-为语言联邦而不是单一的语言"><a href="#条款1：视c-为语言联邦而不是单一的语言" class="headerlink" title="条款1：视c++为语言联邦而不是单一的语言"></a>条款1：视c++为语言联邦而不是单一的语言</h2><h2 id="条款2：尽量使用const，enum，inline替换-define"><a href="#条款2：尽量使用const，enum，inline替换-define" class="headerlink" title="条款2：尽量使用const，enum，inline替换 #define"></a>条款2：尽量使用const，enum，inline替换 #define</h2><h2 id="条款3：尽量使用const"><a href="#条款3：尽量使用const" class="headerlink" title="条款3：尽量使用const"></a>条款3：尽量使用const</h2><h2 id="条款4：确定对象在被使用前已被初始化"><a href="#条款4：确定对象在被使用前已被初始化" class="headerlink" title="条款4：确定对象在被使用前已被初始化"></a>条款4：确定对象在被使用前已被初始化</h2>
+<p> <strong>PS: 更多有关转型的tips请看本书条款27</strong></p>
+<h2 id="02-copy-constructor-and-copy-assignment"><a href="#02-copy-constructor-and-copy-assignment" class="headerlink" title="02. copy constructor and copy assignment"></a>02. copy constructor and copy assignment</h2><p>注意区分他们的区别，copy构造函数是以同类型的对象初始化自我对象，而copy赋值函数是从另一个同类型对象中拷贝其值到自我对象中。<strong>一般来说如果你没有为你的类定义这两个函数，那么编译器就会自动帮你生成这两个函数在需要的时候</strong>。</p>
+<p>一般他们在类中的定义如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ...;</span><br><span class="line">    <span class="built_in">A</span>(<span class="type">const</span> A&amp; rhs);            <span class="comment">// copy constructor</span></span><br><span class="line">    A&amp; <span class="keyword">operator</span>=(<span class="type">const</span> A&amp; rhs); <span class="comment">// copy assignment</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>区别何时调用的这两个函数：</strong>只需要看是否有新的对象被创建</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">A testOne;</span><br><span class="line"><span class="function">A <span class="title">testTwo</span><span class="params">(testOne)</span></span>;    <span class="comment">// cpoy constructor</span></span><br><span class="line">A testThree = testTwo; <span class="comment">// copy constructor</span></span><br><span class="line">testOne = testThree;   <span class="comment">// copy assignment</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="TR1和Boost"><a href="#TR1和Boost" class="headerlink" title="TR1和Boost"></a>TR1和Boost</h2><p>这两个其实就是对stl库的扩展，tr1增加很多c++11之后的功能，而Boost是一个类似于大杂烩的库，针对现有stl库的不足，Boost社区的程序员自发的把自己实现的好用的库开源出来给大家使用，现在的c++库也在不断的完善，所有在学习这些比较老旧的技术之前先看看最新的比如c++17，c++20等等。</p>
+<h2 id="条款1：视c-为语言联邦而不是单一的语言"><a href="#条款1：视c-为语言联邦而不是单一的语言" class="headerlink" title="条款1：视c++为语言联邦而不是单一的语言"></a>条款1：视c++为语言联邦而不是单一的语言</h2><p>由于c++的特性较多，因此<strong>c++高效编程准则</strong>有可能会因为不同的特性而变化，本书将c++划分成了更加细致的4个次语言：<strong>C, Object-Oriented C++, Template C++ and STL</strong>。而不同的次语言所遵循的高效编程准则都不太一样，就以传递参数为例：<br>C和STL在传递参数的时候，pass-by-value更高效，相反对于Object-Oriented C++和Template C++来说pass-by-reference-to-const则更加高效。</p>
+<h2 id="条款2：尽量使用const，enum，inline替换-define"><a href="#条款2：尽量使用const，enum，inline替换-define" class="headerlink" title="条款2：尽量使用const，enum，inline替换#define"></a>条款2：尽量使用const，enum，inline替换#define</h2><p><strong>使用#define的坏处</strong>：</p>
+<ul>
+<li>常量定义: 可能导致定义的常量没有进入符号表，因为该常量在进入编译器之前就被预编译器移走了。<strong>可能会引起提到该常量值的编译错误</strong>。</li>
+<li>宏函数:</li>
+</ul>
+<p><strong>使用const定义常量的好处</strong>：</p>
+<ul>
+<li>解决常量不会被编译器看到</li>
+</ul>
+<p><strong>使用const需要注意的特殊情况</strong>:</p>
+<ul>
+<li>常量指针: 由于常量一般被定义在头文件中供多个源文件使用，当多个源文件创建指向这个常量的指针的时候会引起不确定性，所以定义常量指针就显得很有必要</li>
+<li>class专属常量: 为了确保多个实体所拥有的常量都是一致的，申明该常量为static很有必要</li>
+</ul>
+<p><strong>使用inline定义替换#define的好处</strong>：</p>
+<ul>
+<li>test</li>
+</ul>
+<h3 id="一些不懂得概念"><a href="#一些不懂得概念" class="headerlink" title="一些不懂得概念"></a>一些不懂得概念</h3><ol>
+<li>预处理器实际就是一些指令，这些指令告诉编译器在编译之前应该完成哪些动作，常见的预处理指令有：</li>
+</ol>
+<ul>
+<li>#define预处理</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 常量</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PI 3.14</span></span><br><span class="line"><span class="comment">// 宏函数</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MIN(a, b) (((a)&lt;(b)) ? a : b)</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>#include</li>
+<li>条件编译<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> NULL</span></span><br><span class="line">    <span class="meta">#<span class="keyword">define</span> NULL 0</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">if</span> 0</span></span><br><span class="line">    ...</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol start="2">
+<li><p>符号表</p>
+</li>
+<li><p>the enum hack</p>
+</li>
+</ol>
+<h2 id="条款3：尽量使用const"><a href="#条款3：尽量使用const" class="headerlink" title="条款3：尽量使用const"></a>条款3：尽量使用const</h2><h2 id="条款4：确定对象在被使用前已被初始化"><a href="#条款4：确定对象在被使用前已被初始化" class="headerlink" title="条款4：确定对象在被使用前已被初始化"></a>条款4：确定对象在被使用前已被初始化</h2>
     </div>
 
     
