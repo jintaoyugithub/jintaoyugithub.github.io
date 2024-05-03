@@ -147,25 +147,67 @@
 
     <div class="content">
         <p><strong>Note</strong>: {} means doesn’t need “”</p>
-<h2 id="Basic-operation"><a href="#Basic-operation" class="headerlink" title="Basic operation"></a>Basic operation</h2><p><code>git init</code>: to initialize a local folder into git repo</p>
-<p><code>git status</code>: check the status of the current branch of a git repo, e.g. how many files are not added to the index, how many files are ready to be committed.</p>
-<p><code>git add &#123;file name&#125;</code> or <code>git add .</code>: to add a specific file or all file to index</p>
+<h2 id="Things-you-should-know"><a href="#Things-you-should-know" class="headerlink" title="Things you should know"></a>Things you should know</h2><p><strong>.git</strong>: .git folder store all the changes of the repo.</p>
+<p><strong>different space of git</strong>:</p>
+<ul>
+<li><p><strong>workspace</strong>: the current branch which we’re eidting.</p>
+</li>
+<li><p><strong>stage&#x2F;index</strong>: store the status of out current workspace, which files are changes which aren’t.</p>
+</li>
+<li><p><strong>repository</strong>: local repo, store all the branches and files.</p>
+</li>
+<li><p><strong>remote</strong>: remote repo like github.</p>
+</li>
+</ul>
+<p>The relation between them is shown below:</p>
+<p><img src="/imgs/gitNotes/img1.jpg" alt="relation between these four space"></p>
+<p><strong>Authorization</strong>: there are <strong>two</strong> ways you can authorize the access of the remote github repo to you local computer</p>
+<ul>
+<li><strong>ssh keys</strong>(old): seems like github has canceled the ssh option.</li>
+<li><strong>personal acess tokens</strong>(new)</li>
+</ul>
+<h2 id="Basic-operation"><a href="#Basic-operation" class="headerlink" title="Basic operation"></a>Basic operation</h2><p><strong>git init</strong>: to initialize a local folder into a git repo</p>
+<p><strong>git status</strong>: check the status of the current branch of a git repo, e.g. how many files are not added to the stage, how many files are ready to be committed.</p>
+<p><strong>git add {file name}</strong> or <strong>git add .</strong>: to add a specific file or all file to stage.</p>
+<p><strong>git commit -m “message you wanna add”</strong>: try to commit the changes with a message.</p>
+<p><strong>git remote add origin {remote repo}</strong>: add the github repo addr as the origin in order to push new changes to the remote repo.</p>
+<p><strong>git remote -v</strong>: to check any remote repo that I’ve connoted to this local repo.</p>
+<p><strong>git push -u origin master</strong>: push the local repo to remote repo.</p>
+<ul>
+<li><p>-u means <strong>set-upstream</strong>, it makes the current remote repo as default therefore you can use <strong>git push</strong> for short.</p>
+</li>
+<li><p><strong>origin</strong> is the addr of the remote repo, which means origin is, for example, <a target="_blank" rel="noopener" href="https://github.com/jintaoyugithub/jintaoyugithub.github.io.git">https://github.com/jintaoyugithub/jintaoyugithub.github.io.git</a></p>
+</li>
+</ul>
 <p>git diff (1. no file name? 2. multiple files?)</p>
-<h2 id="configuration"><a href="#configuration" class="headerlink" title="configuration"></a>configuration</h2><p>git config –global user.name “”<br>git config –global user.email “”<br>git config –global core.editor nvim<br>git config credential.helper store (then git push) # store the password</p>
-<p>git commit -m “description” (why -m: message)</p>
-<p>create .gitignore</p>
-<p>git rm –cached file name to untrack the file</p>
-<h2 id="branch"><a href="#branch" class="headerlink" title="branch"></a>branch</h2><p>git branch -l(for local) {branch name} # master is main<br>git branch -r(for remote) {branch name}<br>git branch -a(for all) {branch name} </p>
-<p>git checkout {branch name}</p>
-<p>git merge {branch name}</p>
-<p>git branch # to check how many branches you have</p>
-<p>git branch -d {branch name}</p>
-<p>git branch -D {branch name} # force to delete</p>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p><strong>add user name</strong>: git config –global user.name “”</p>
+<p><strong>add user email</strong>: git config –global user.email “”</p>
+<p>git config –global core.editor nvim</p>
+<p>git config credential.helper store (then git push) # store the password</p>
+<p><strong>untrack some files as default</strong>: you need to create a file call <strong>.gitignore</strong> and then use the command <strong>git rm –cached {file name}</strong>: to untrack the file.</p>
+<h2 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h2><p><strong>git branch</strong>: chech the status of the branches, e.g. how many branches you have, which branch you’re current in.</p>
+<p><strong>git branch {new branch name}</strong>: create a new branch</p>
+<p>extra commands:</p>
+<ul>
+<li>-l {branch name}: for local branch</li>
+<li>-r {branch name}: for remote branch</li>
+<li>-a: for all branches</li>
+<li>-d {branch name}: delete the branch</li>
+<li>-D {branch name}: force delete</li>
+</ul>
+<p><strong>git checkout {branch name}</strong>: to switch to the branch we want.</p>
+<h2 id="Merge"><a href="#Merge" class="headerlink" title="Merge"></a>Merge</h2><p><strong>git diff</strong>: compare what’s different between this time and last time in the same branch.</p>
+<p><strong>git diff {branch name}</strong>: to see what’s different from current branch to the branch that we specified.</p>
+<p><strong>git merge {branch name}</strong>: to merge the specified branch to the current branch.</p>
+<p><strong>Note</strong>: a more common way to merge two branches is to push the code to the seprate branch individually and make a PR in github.</p>
+<h2 id="Conflict"><a href="#Conflict" class="headerlink" title="Conflict"></a>Conflict</h2><p>You better to have a nice code editor to see the confilcts.</p>
+<h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p><strong>git reset</strong>: to undo the <strong>add</strong> action, which means get the files back from you add them to the stage last time.</p>
+<p><strong>git reset HEAD</strong>: undo the last <strong>commit</strong>.</p>
 <h2 id="cooperation"><a href="#cooperation" class="headerlink" title="cooperation"></a>cooperation</h2><p>create new repo in github</p>
 <p>git remote add origin {link to you remote repo}</p>
 <p>git push –set-upstream origin {branch name}</p>
 <p>git pull</p>
-<h2 id="conflict"><a href="#conflict" class="headerlink" title="conflict"></a>conflict</h2>
+
     </div>
 
     
