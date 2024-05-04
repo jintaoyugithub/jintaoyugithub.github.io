@@ -170,7 +170,7 @@
 <p><strong>git status</strong>: check the status of the current branch of a git repo, e.g. how many files are not added to the stage, how many files are ready to be committed.</p>
 <p><strong>git add {file name}</strong> or <strong>git add .</strong>: to add a specific file or all file to stage.</p>
 <p><strong>git commit -m “message you wanna add”</strong>: try to commit the changes with a message.</p>
-<p><strong>git remote add origin {remote repo}</strong>: add the github repo addr as the origin in order to push new changes to the remote repo.</p>
+<p><strong>git remote add origin {link to your repo}</strong>: add the github repo addr as the origin in order to push new changes to the remote repo.</p>
 <p><strong>git remote -v</strong>: to check any remote repo that I’ve connoted to this local repo.</p>
 <p><strong>git push -u origin master</strong>: push the local repo to remote repo.</p>
 <ul>
@@ -179,7 +179,7 @@
 <li><p><strong>origin</strong> is the addr of the remote repo, which means origin is, for example, <a target="_blank" rel="noopener" href="https://github.com/jintaoyugithub/jintaoyugithub.github.io.git">https://github.com/jintaoyugithub/jintaoyugithub.github.io.git</a></p>
 </li>
 </ul>
-<p>git diff (1. no file name? 2. multiple files?)</p>
+<p><strong>git log</strong>: show the commit history.</p>
 <h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p><strong>add user name</strong>: git config –global user.name “”</p>
 <p><strong>add user email</strong>: git config –global user.email “”</p>
 <p>git config –global core.editor nvim</p>
@@ -202,11 +202,9 @@
 <p><strong>Note</strong>: a more common way to merge two branches is to push the code to the seprate branch individually and make a PR in github.</p>
 <h2 id="Conflict"><a href="#Conflict" class="headerlink" title="Conflict"></a>Conflict</h2><p>You better to have a nice code editor to see the confilcts.</p>
 <h2 id="Undo"><a href="#Undo" class="headerlink" title="Undo"></a>Undo</h2><p><strong>git reset</strong>: to undo the <strong>add</strong> action, which means get the files back from you add them to the stage last time.</p>
-<p><strong>git reset HEAD</strong>: undo the last <strong>commit</strong>.</p>
-<h2 id="cooperation"><a href="#cooperation" class="headerlink" title="cooperation"></a>cooperation</h2><p>create new repo in github</p>
-<p>git remote add origin {link to you remote repo}</p>
-<p>git push –set-upstream origin {branch name}</p>
-<p>git pull</p>
+<p><strong>git reset HEAD~{number}</strong>: reset the current branch <strong>number</strong> steps back from the current <strong>HEAD</strong> pointer.</p>
+<p><strong>git reset {hash of that commit}</strong>: go back to a specifc commit.</p>
+<p><strong>git reset –hard HEAD&#x2F;{hash of the commit}</strong>: reset the branch pointer to the specified commit and forcefully discard all the local changes and modifications you’ve done in the current workspace.</p>
 
     </div>
 
