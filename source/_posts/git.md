@@ -39,7 +39,7 @@ The relation between them is shown below:
 
 **git commit -m "message you wanna add"**: try to commit the changes with a message.
 
-**git remote add origin {remote repo}**: add the github repo addr as the origin in order to push new changes to the remote repo.
+**git remote add origin {link to your repo}**: add the github repo addr as the origin in order to push new changes to the remote repo.
 
 **git remote -v**: to check any remote repo that I've connoted to this local repo.
 
@@ -49,8 +49,7 @@ The relation between them is shown below:
 
 - **origin** is the addr of the remote repo, which means origin is, for example, https://github.com/jintaoyugithub/jintaoyugithub.github.io.git
 
-
-git diff (1. no file name? 2. multiple files?)
+**git log**: show the commit history.
 
 
 ## Configuration
@@ -99,17 +98,9 @@ You better to have a nice code editor to see the confilcts.
 
 **git reset**: to undo the **add** action, which means get the files back from you add them to the stage last time.
 
-**git reset HEAD**: undo the last **commit**.
+**git reset HEAD~{number}**: reset the current branch **number** steps back from the current **HEAD** pointer.
 
+**git reset {hash of that commit}**: go back to a specifc commit.
 
-
-## cooperation
-    
-create new repo in github
-
-git remote add origin {link to you remote repo}
-
-git push --set-upstream origin {branch name}
-
-git pull
+**git reset --hard HEAD/{hash of the commit}**: reset the branch pointer to the specified commit and forcefully discard all the local changes and modifications you've done in the current workspace.
 
