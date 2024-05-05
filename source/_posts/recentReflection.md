@@ -38,8 +38,3 @@ cover_image: /imgs/coverImgs/reflection.jpg
 PS：忘记说了，瑞典的春天终于来了，我住的地方窗外就是一片yard，看着窗景从白雪皑皑变成现在的绿草一片真是让人心情都变好了不少。
 
 ![](/imgs/RecentReflection/img.jpg)
-
-
-
-
-
