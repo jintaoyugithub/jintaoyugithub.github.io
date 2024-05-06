@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Programming and Scripting in UE - jintaoyu blog</title>
+  
+    <link rel="shortcut icon" href="/imgs/icons/blog.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Programming and Scripting in UE - jintaoyu blog" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="https://jintaoyugithub.github.io/2024/05/04/uedoc/index.html" />
+  
+  <meta property="og:image" content="/imgs/coverImgs/ue.png" />
+  
+  <meta property="og:article:published_time" content="2024-05-04T21:04:30.000Z" />
+  
+  <meta property="og:article:author" content="Jintao Yu" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/MrWillCom" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+
+        
+        <div class="date" id="date">
+            <span>May</span>
+            <span>4,</span>
+            <span>2024</span>
+        </div>
+        
+
+        <h2 class="title">Programming and Scripting in UE</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <blockquote>
+<p>:warning: Note :warning:：UE的体量真的是非常大，之前断断续续看过一些教程视频，但是很多地方都不太了解，所以借着这次机会通读一下UE的文档，目前我所看的文档是对应<strong>5.2版本</strong>的，如果之后有变动会在后面写明。这一篇主要是关于<strong>UE Programming</strong>的内容，有关<strong>UE渲染系统</strong>的文档阅读笔记应该在之后几篇之中。</p>
+</blockquote>
+<h2 id="GameObject-in-UE"><a href="#GameObject-in-UE" class="headerlink" title="GameObject in UE"></a>GameObject in UE</h2><h3 id="UObject"><a href="#UObject" class="headerlink" title="UObject"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/objects-in-unreal-engine?application_version=5.2">UObject</a></h3><p>The base class for objects in Unreal</p>
+<ul>
+<li>no constructor arguments</li>
+<li>can’t compile without the default constructor</li>
+<li>only values and subobjects set up, no functionality in construction</li>
+<li>initialization of <strong>Actor</strong> and <strong>Actor Component</strong> shoule be in <strong>BeginPlay()</strong></li>
+<li>nerver use <strong>new&#x2F;delete</strong> to create a <strong>UObject</strong> since they’re memory managed by UE’s GC system</li>
+<li><strong>do not</strong> possess any built-in update ability, need to use <strong>FTickableGameObject</strong> class specifier and then implement <strong>Tick()</strong> function to solve this</li>
+</ul>
+<p>:exclamation: Since UObject is part of the UE refelction system, it includes some benefits like <strong>Garbage collection, Reflection, Serialization, Network replication and so on</strong>.</p>
+<p><strong>Class Default Object(COD)</strong>: a default template object contained in each <strong>UCLASS</strong>.</p>
+<ul>
+<li><strong>GetClass()</strong> to get UCLASS from an object instance</li>
+</ul>
+<h3 id="Actors"><a href="#Actors" class="headerlink" title="Actors"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/actors-in-unreal-engine?application_version=5.2">Actors</a></h3><ul>
+<li>objects that can be placed into a level</li>
+<li><strong>do not</strong> have transforms themslves, rely on the transforms of their components</li>
+<li>base ob AActor c++ class</li>
+<li>containers that hold components</li>
+<li>:bookmark:<a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-actor-lifecycle?application_version=5.2">lifecycle</a> </li>
+<li>be able to tiked(updated) every frame, call <strong>Tick()</strong> function automatically</li>
+<li>are not garbage collected, need to explicitly destroyed by calling <strong>Destroy()</strong></li>
+</ul>
+<h3 id="Components"><a href="#Components" class="headerlink" title="Components"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/components-in-unreal-engine?application_version=5.2">Components</a></h3><h2 id="Classes-in-UE"><a href="#Classes-in-UE" class="headerlink" title="Classes in UE"></a>Classes in UE</h2><h3 id="Unreal-Header-Tool"><a href="#Unreal-Header-Tool" class="headerlink" title="Unreal Header Tool"></a>Unreal Header Tool</h3><p>a certain header file structure for UHT to perform preprocessing step in order to harness the functionality provided by UObject.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&#x27;Object.h&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&#x27;MyObject.generated.h&#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">UCLASS</span>()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MYPROJECT_API</span> UMyObject : <span class="keyword">public</span> UObject</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">GENERATED_BODY</span>()</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>MyObject.generated.h file should be in the last #include</li>
+<li><a href="#UCLASS-macro">UCLASS()</a></li>
+<li>MYPROJECT_API: expose the class to other modules</li>
+<li>GENERATED_BODY(): sets up the class to support the infrastructure required by the engine</li>
+</ul>
+<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><h3 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h3><h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><h2 id="Reflection-System"><a href="#Reflection-System" class="headerlink" title="Reflection System"></a>Reflection System</h2><h3 id="C-Refelction-System"><a href="#C-Refelction-System" class="headerlink" title="C++ Refelction System"></a>C++ Refelction System</h3><h3 id="unreal-engine-refelction-system"><a href="#unreal-engine-refelction-system" class="headerlink" title="unreal engine refelction system"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/reflection-system-in-unreal-engine?application_version=5.2">unreal engine refelction system</a></h3><p><strong>UCLASS</strong> macro:</p>
+<ul>
+<li>makes UObject visible to UE</li>
+<li>support <a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/class-specifiers?application_version=5.2">Class and Metadata Specifiers</a> </li>
+<li>tag custom classes derived from UObject</li>
+<li>make custom classes awared by <a href="#UObject-Handling-System">UObject Handling System</a></li>
+</ul>
+<h3 id="UObject-Handling-System"><a href="#UObject-Handling-System" class="headerlink" title="UObject Handling System"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-object-handling-in-unreal-engine?application_version=5.2">UObject Handling System</a></h3><h3 id="Garbage-Collection-System"><a href="#Garbage-Collection-System" class="headerlink" title="Garbage Collection System"></a><a target="_blank" rel="noopener" href="https://unrealcommunity.wiki/garbage-collection-36d1da">Garbage Collection System</a></h3><h2 id="UE-Smart-Pointer-Library"><a href="#UE-Smart-Pointer-Library" class="headerlink" title="UE Smart Pointer Library"></a>UE Smart Pointer Library</h2>
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Jintao Yu, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2024/05/05/uerendoc/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">Unreal Engine Rendering and Graphics</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2024/04/28/recentReflection/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Recent Reflection</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+        </div>
+        <span>&copy; 2024 Jintao Yu<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>
