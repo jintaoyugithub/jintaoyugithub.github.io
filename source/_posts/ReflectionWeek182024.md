@@ -1,8 +1,58 @@
 ---
 title: Reflection on Week 18, 2024
-katex: true
+katex: false
 mathjax: false
 date: 2024-05-06 09:22:03
 tags:
-cover_image:
+cover_image: /imgs/coverImgs/week182024.jpg
 ---
+
+## 近期随记 
+
+瑞典的春天来的猝不及防，窗外小院草坪好像一夜之间就变绿Valborgsmässoafton了，在每年的4月底5月初，瑞典都会举行盛大的仪式来欢迎春天的到来，大家和朋友欢聚在一起，一起跳舞，喝酒，晚上了一起看篝火。好像附近几个镇子的居民都跑到lund来了，第一次在lund见到这么多人。我也是在机缘巧合之下听到我舍友问了我准备了怎么样了才知道Valborgsmässoafton这个节日的。早上的city park真的是非常热闹，整个公园都挤满了人，lund出动了大量的警力来维持现场的秩序，还搬来了很多"旱厕"，就是一种移动厕所，蓝色的小小的单独隔间，在前往DJ台的路上有很多。
+
+![右边的就是"旱厕"](/imgs/ReflectionWeek182024/img12.jpg) 
+
+DJ台前挤满了人，我还在那里碰到了李苏，曾哥和一个读博的学长，李苏还把我扛起来让我拍照真是非常的有意思。我问他"60公斤的深蹲能做几个"，他说"能做4，5个吧"，我说"行，把我扛起来，我要拍照！"，但是我手上没有他扛我的照片就用他抗学长的照片替代一下。
+
+
+<center><img src="/imgs/ReflectionWeek182024/img2.jpg" width="50%" height="50%"></center>
+
+李苏帮我扛起来拍照的时候，他跟说有个老哥对着我比yeah呢，我后来看了一下照片，哈哈，确实很醒目。
+
+![dj台](/imgs/ReflectionWeek182024/img3.jpg) 
+
+傍晚我跟王浩晨一起去看了篝火点燃仪式，说实话，人特别多而且使用的木头也很少所以一共可能就烧了20到30分钟左右呢
+
+![篝火1](/imgs/ReflectionWeek182024/img4.jpg) 
+
+![篝火2](/imgs/ReflectionWeek182024/img5.jpg) 
+
+![篝火3](/imgs/ReflectionWeek182024/img6.jpg) 
+
+在篝火仪式的旁边草坪上，有个人踩着高跷，手拿玩具泡泡枪和小朋友，路人一起玩耍拍照，我对着他拍照的时候他还很人情的配合我，哈哈。
+
+<center><img src="/imgs/ReflectionWeek182024/img7.jpg" width="50%" height="50%"></center>
+
+看着大家坐在草坪上打闹，玩耍，吹着伴随夕阳的春风，我感到很惬意但难免也因为感觉融入不了这个群体而感到些许难过。
+
+![草坪上的人们](/imgs/ReflectionWeek182024/img8.jpg) 
+
+离我家100米左右的地方有一个lund的植物园也是lund大学的生物系同学可能会上课或者做研究的地方。那天王浩晨邀请我一起去逛逛植物园。植物园里的大樱花树开了，加上有落日的加持，真的是非常漂亮。说来惭愧，离我家这么近我却没来过几次，草坪上很多人坐着聊天，喝酒，很是惬意呢。
+
+![樱花树](/imgs/ReflectionWeek182024/img9.jpg) 
+
+并且lund大学还在植物园里面种了很多的郁金香
+
+![郁金香](/imgs/ReflectionWeek182024/img10.jpg) 
+
+抓拍到一对可能是小情侣躺在草坪上晒太阳，我也找了一个椅子坐着感受一下春天带给瑞典的美好，毕竟冬天实在太长了。
+
+![小情侣晒太阳](/imgs/ReflectionWeek182024/img11.jpg) 
+
+
+## 用时分析
+
+
+
+
