@@ -40,8 +40,116 @@ The base class for objects in Unreal
 
 ### [Components](https://dev.epicgames.com/documentation/en-us/unreal-engine/components-in-unreal-engine?application_version=5.2)
 
+All components are derived from **UActorComponent** and they play a very important role in the game play since everything the player sees or interacts with in the game world is ultimately the work of some type of Components, for example, they're **the only way** to:
+- render meshes and images
+- implement collision
+- play audio
+- and so on
 
-## Classes in UE
+#### 3 major components
+
+**Actor Components**
+- class UActorComponent
+- no transform, no geometry representation
+- mainly for abstract/non-physical behaviors like movement, attribute management
+- **do not** update by default, try following to turn on update for actor components
+```c++
+// in constructor
+PrimaryComponentTick.bCanEverTick = true;
+// in constructor or elsewhere, call
+PrimaryComponentTick.SetTickFunctionEnable(true);
+```
+- :bookmark:need to manually create render and physics state
+
+**Scene Components**
+- class USceneComponent, derived from UActorComponent
+- have transform but no geometry representation
+- be able to update by implementing **TickComponent** function
+- need to manually create physics state
+- have the ability to attach to one another(same for its children)
+
+**Primitive Components**
+- class UPrimitiveComponent, derived from USceneComponent
+- have transform and have geometry representation
+- mainly for render and perform physics simulation
+- be able to update by implementing **TickComponent** function
+- automatically create render and physics state
+
+#### Visualization Components
+
+To display components that do not have visual representation, you just need to:
+- create any regular component
+- call **SetIsVisualizationComponent** function of that component
+
+:warning: Note :warning:: in order to make packaged builds won't be affected by these components, the code should be inside of preprocessor checks again **WITH_EDITORONLY_DATA** or **WITH_EDITOR**, for example:
+
+```c++
+void UCameraComponent::OnRegister() {
+#if WITH_EDITORONLY_DATA
+	if (AActor* MyOwner = GetOwner())
+	{
+		// ...
+		if (DrawFrustum == nullptr)
+		{
+			DrawFrustum = NewObject<UDrawFrustumComponent>(MyOwner, NAME_None, RF_Transactional | RF_TextExportTransient);
+			DrawFrustum->SetupAttachment(this);
+			DrawFrustum->SetIsVisualizationComponent(true);
+			// ...
+		}
+	}
+	// ...
+#endif
+}
+```
+
+## [Classes in UE](https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-classes-in-unreal-engine?application_version=5.2)
+
+**Two major game play classes**:
+- prefix is A: spawnable objects
+- prefix is U: like objects, which cannot directly instaced into the world
+- basic format will be like:
+```c++
+UCLASS([specifier, ...], [meta(key=value), ...])
+class ClassName : public ParentName {
+    // must be at very beginning of the class body
+    GENERATED_BODY();
+}
+```
+:warning: Note :warning:: More info about **UCLASS** please go to [UCLASS](#UCLASS-macro)
+
+### References in class
+
+#### Asset References 
+
+:warning: Preferred mehtod is to use **Blueprint** to configure asset properties.
+
+Hardcoded references are supported while asset references in class ideally do not exist. You can use **ConstructorHelpers::FObjectFinder** to find a specified objects in content packages.
+
+#### Class Referneces
+
+Most cases, **StaticClass()** will work to get a UClass
+
+#### Component and Sub-Objects references
+
+Generally create component(by using **CreateDefaultSubobject<Component>()**) subobjects and attach them to actor's hierarchy can also be done in **constructor**, in order to ensure the components are always properly create, destroyed and garbage-collected, **we should store the pointer to these components in the class as a UPROPERTY**.
+
+```c++
+UCLASS()
+class AWindPointSource : public AActor
+{
+	GENERATED_BODY()
+	public:
+
+	UPROPERTY()
+	UWindPointSourceComponent* WindPointSource;
+};
+
+AWindPointSource::AWindPointSource()
+{
+	// Create a new component and give it a name.
+	WindPointSource = CreateDefaultSubobject<UWindPointSourceComponent>(TEXT("WindPointSourceComponent0"));
+}
+```
 
 ### Unreal Header Tool
 
@@ -85,7 +193,12 @@ class MYPROJECT_API UMyObject : public UObject
 
 ### [UObject Handling System](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-object-handling-in-unreal-engine?application_version=5.2)
 
+**UCLASS, UPROPERTY, UFUNTION** make classes, properties and functions can be awared by unreal engine and implement a lot of features under-the-hood for them:
+- automatic properties initialization
+- automatic references updating
+- serialization
+- garbage collection
+
 ### [Garbage Collection System](https://unrealcommunity.wiki/garbage-collection-36d1da)
 
-## UE Smart Pointer Library
 
