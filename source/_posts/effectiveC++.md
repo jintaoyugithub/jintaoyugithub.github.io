@@ -78,14 +78,20 @@ C和STL在传递参数的时候，pass-by-value更高效，相反对于Object-Or
 **使用const需要注意的特殊情况**:
 - 常量指针: 由于常量一般被定义在头文件中供多个源文件使用，当多个源文件创建指向这个常量的指针的时候会引起不确定性，所以定义常量指针就显得很有必要
 - class专属常量: 为了确保多个实体所拥有的常量都是一致的，申明该常量为static很有必要
+- 如果**不取地址**那么声明整数类变量（c++ integral type）可以无须提供定义式，一些旧的编译器不允许static成员**在其声明式**上获得初值，那么初值可以放在定义式中。
+- 编译期间若需要一个class的常量值，比如**数组的大小**，但你的编译器不允许完成"in class"初值设定，可以使用**Enum hack**的方法
 
-**使用inline定义替换#define的好处**：
-- test
+```c++
+class GamePlayer {
+private:
+    enum { NumTurns = 5 };
 
+    int scores[NumTurns];
+    // ... 
+}
+```
 
-
-
-### 一些不懂得概念
+### 一些新的概念
 
 1. 预处理器实际就是一些指令，这些指令告诉编译器在编译之前应该完成哪些动作，常见的预处理指令有：
 - #define预处理
@@ -110,9 +116,13 @@ C和STL在传递参数的时候，pass-by-value更高效，相反对于Object-Or
 
 2. 符号表
 
-3. the enum hack
+3. the enum hack是**模版源编程**的基本技术之一，其好处有：
+- 限制获取整数常量的pointer或reference
+- 防止某些编译器不遵循**对整数型const对象不另设存储空间**的约定而导致的不必要的内存分配
 
+4. macro, function and macro function的区别
 
+5. template inline函数，见条款30
 
 ## 条款3：尽量使用const
 
