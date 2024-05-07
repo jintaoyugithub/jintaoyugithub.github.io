@@ -175,6 +175,22 @@ class MYPROJECT_API UMyObject : public UObject
 
 ### Properties
 
+1. Integer as **Bitmasks**: unreal support us with many features for better enums utilizing, there are many ways you can defines enum as **bitmasks enums**:
+- **Meta tag "Bitflags"** in **UENUM** and **Bitmask** in **UPARAM** 
+- **ENUM_CLASS_FLAGS()** macro on a defined enum
+- **BitmaskEnum = "name of a enum"** meta tag in **UPROPERTY** to let a variable to use enum and exposed in the editor
+
+You can read some **Bitmask enums examples** in the last part.
+
+2. String: 4 main string in unreal
+- FString: dynamic array of chars
+- FName: an **immutable case-insensitive** string
+- FText: localized text, for example, display different languages based on the user setting
+- TEXT() macro: TCHAR type for characters, it's the most uses
+
+3. [Properties specifiers and metadata specifiers](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-uproperties?application_version=5.2) 
+
+
 ### Struct
 
 ### Functions
@@ -183,7 +199,7 @@ class MYPROJECT_API UMyObject : public UObject
 
 ### C++ Refelction System
 
-### [unreal engine refelction system](https://dev.epicgames.com/documentation/en-us/unreal-engine/reflection-system-in-unreal-engine?application_version=5.2)
+### [Unreal engine refelction system](https://dev.epicgames.com/documentation/en-us/unreal-engine/reflection-system-in-unreal-engine?application_version=5.2)
 
 **UCLASS** macro:
 - makes UObject visible to UE
@@ -200,5 +216,20 @@ class MYPROJECT_API UMyObject : public UObject
 - garbage collection
 
 ### [Garbage Collection System](https://unrealcommunity.wiki/garbage-collection-36d1da)
+
+## Things that might be new to you
+
+1. **Bitmask** in unreal engine
+
+8bit to store maximum 256 enums, data base is better when the enum values are greater than some threshold
+
+bitflag enums, for example, in a tile game you can represent 8 different combination with 8 bitflat enums, in c++ code, you can make 64 differenct combinations when using uint64. And bitflag can be also used as a constrains on different types of tiles, like it doesn't make scene ocean tiles are the neighbour of desert tiles.
+
+use hexadecimal notion to specify the value
+
+example: damage on different human part
+
+
+
 
 
