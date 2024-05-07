@@ -182,12 +182,12 @@
 <ul>
 <li>常量指针: 由于常量一般被定义在头文件中供多个源文件使用，当多个源文件创建指向这个常量的指针的时候会引起不确定性，所以定义常量指针就显得很有必要</li>
 <li>class专属常量: 为了确保多个实体所拥有的常量都是一致的，申明该常量为static很有必要</li>
+<li>如果<strong>不取地址</strong>那么声明整数类变量（c++ integral type）可以无须提供定义式，一些旧的编译器不允许static成员<strong>在其声明式</strong>上获得初值，那么初值可以放在定义式中。</li>
+<li>编译期间若需要一个class的常量值，比如<strong>数组的大小</strong>，但你的编译器不允许完成”in class”初值设定，可以使用<strong>Enum hack</strong>的方法</li>
 </ul>
-<p><strong>使用inline定义替换#define的好处</strong>：</p>
-<ul>
-<li>test</li>
-</ul>
-<h3 id="一些不懂得概念"><a href="#一些不懂得概念" class="headerlink" title="一些不懂得概念"></a>一些不懂得概念</h3><ol>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">GamePlayer</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">enum</span> &#123; NumTurns = <span class="number">5</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> scores[NumTurns];</span><br><span class="line">    <span class="comment">// ... </span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="一些新的概念"><a href="#一些新的概念" class="headerlink" title="一些新的概念"></a>一些新的概念</h3><ol>
 <li>预处理器实际就是一些指令，这些指令告诉编译器在编译之前应该完成哪些动作，常见的预处理指令有：</li>
 </ol>
 <ul>
@@ -201,7 +201,17 @@
 <ol start="2">
 <li><p>符号表</p>
 </li>
-<li><p>the enum hack</p>
+<li><p>the enum hack是<strong>模版源编程</strong>的基本技术之一，其好处有：</p>
+</li>
+</ol>
+<ul>
+<li>限制获取整数常量的pointer或reference</li>
+<li>防止某些编译器不遵循<strong>对整数型const对象不另设存储空间</strong>的约定而导致的不必要的内存分配</li>
+</ul>
+<ol start="4">
+<li><p>macro, function and macro function的区别</p>
+</li>
+<li><p>template inline函数，见条款30</p>
 </li>
 </ol>
 <h2 id="条款3：尽量使用const"><a href="#条款3：尽量使用const" class="headerlink" title="条款3：尽量使用const"></a>条款3：尽量使用const</h2><h2 id="条款4：确定对象在被使用前已被初始化"><a href="#条款4：确定对象在被使用前已被初始化" class="headerlink" title="条款4：确定对象在被使用前已被初始化"></a>条款4：确定对象在被使用前已被初始化</h2>
