@@ -172,7 +172,59 @@
 <li>be able to tiked(updated) every frame, call <strong>Tick()</strong> function automatically</li>
 <li>are not garbage collected, need to explicitly destroyed by calling <strong>Destroy()</strong></li>
 </ul>
-<h3 id="Components"><a href="#Components" class="headerlink" title="Components"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/components-in-unreal-engine?application_version=5.2">Components</a></h3><h2 id="Classes-in-UE"><a href="#Classes-in-UE" class="headerlink" title="Classes in UE"></a>Classes in UE</h2><h3 id="Unreal-Header-Tool"><a href="#Unreal-Header-Tool" class="headerlink" title="Unreal Header Tool"></a>Unreal Header Tool</h3><p>a certain header file structure for UHT to perform preprocessing step in order to harness the functionality provided by UObject.</p>
+<h3 id="Components"><a href="#Components" class="headerlink" title="Components"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/components-in-unreal-engine?application_version=5.2">Components</a></h3><p>All components are derived from <strong>UActorComponent</strong> and they play a very important role in the game play since everything the player sees or interacts with in the game world is ultimately the work of some type of Components, for example, they’re <strong>the only way</strong> to:</p>
+<ul>
+<li>render meshes and images</li>
+<li>implement collision</li>
+<li>play audio</li>
+<li>and so on</li>
+</ul>
+<h4 id="3-major-components"><a href="#3-major-components" class="headerlink" title="3 major components"></a>3 major components</h4><p><strong>Actor Components</strong></p>
+<ul>
+<li>class UActorComponent</li>
+<li>no transform, no geometry representation</li>
+<li>mainly for abstract&#x2F;non-physical behaviors like movement, attribute management</li>
+<li><strong>do not</strong> update by default, try following to turn on update for actor components<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in constructor</span></span><br><span class="line">PrimaryComponentTick.bCanEverTick = <span class="literal">true</span>;</span><br><span class="line"><span class="comment">// in constructor or elsewhere, call</span></span><br><span class="line">PrimaryComponentTick.<span class="built_in">SetTickFunctionEnable</span>(<span class="literal">true</span>);</span><br></pre></td></tr></table></figure></li>
+<li>:bookmark:need to manually create render and physics state</li>
+</ul>
+<p><strong>Scene Components</strong></p>
+<ul>
+<li>class USceneComponent, derived from UActorComponent</li>
+<li>have transform but no geometry representation</li>
+<li>be able to update by implementing <strong>TickComponent</strong> function</li>
+<li>need to manually create physics state</li>
+<li>have the ability to attach to one another(same for its children)</li>
+</ul>
+<p><strong>Primitive Components</strong></p>
+<ul>
+<li>class UPrimitiveComponent, derived from USceneComponent</li>
+<li>have transform and have geometry representation</li>
+<li>mainly for render and perform physics simulation</li>
+<li>be able to update by implementing <strong>TickComponent</strong> function</li>
+<li>automatically create render and physics state</li>
+</ul>
+<h4 id="Visualization-Components"><a href="#Visualization-Components" class="headerlink" title="Visualization Components"></a>Visualization Components</h4><p>To display components that do not have visual representation, you just need to:</p>
+<ul>
+<li>create any regular component</li>
+<li>call <strong>SetIsVisualizationComponent</strong> function of that component</li>
+</ul>
+<p>:warning: Note :warning:: in order to make packaged builds won’t be affected by these components, the code should be inside of preprocessor checks again <strong>WITH_EDITORONLY_DATA</strong> or <strong>WITH_EDITOR</strong>, for example:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">UCameraComponent::OnRegister</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="meta">#<span class="keyword">if</span> WITH_EDITORONLY_DATA</span></span><br><span class="line">	<span class="keyword">if</span> (AActor* MyOwner = <span class="built_in">GetOwner</span>())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// ...</span></span><br><span class="line">		<span class="keyword">if</span> (DrawFrustum == <span class="literal">nullptr</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			DrawFrustum = <span class="built_in">NewObject</span>&lt;UDrawFrustumComponent&gt;(MyOwner, NAME_None, RF_Transactional | RF_TextExportTransient);</span><br><span class="line">			DrawFrustum-&gt;<span class="built_in">SetupAttachment</span>(<span class="keyword">this</span>);</span><br><span class="line">			DrawFrustum-&gt;<span class="built_in">SetIsVisualizationComponent</span>(<span class="literal">true</span>);</span><br><span class="line">			<span class="comment">// ...</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Classes-in-UE"><a href="#Classes-in-UE" class="headerlink" title="Classes in UE"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/gameplay-classes-in-unreal-engine?application_version=5.2">Classes in UE</a></h2><p><strong>Two major game play classes</strong>:</p>
+<ul>
+<li>prefix is A: spawnable objects</li>
+<li>prefix is U: like objects, which cannot directly instaced into the world</li>
+<li>basic format will be like:<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UCLASS</span>([specifier, ...], [<span class="built_in">meta</span>(key=value), ...])</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ClassName</span> : <span class="keyword">public</span> ParentName &#123;</span><br><span class="line">    <span class="comment">// must be at very beginning of the class body</span></span><br><span class="line">    <span class="built_in">GENERATED_BODY</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+:warning: Note :warning:: More info about <strong>UCLASS</strong> please go to <a href="#UCLASS-macro">UCLASS</a></li>
+</ul>
+<h3 id="References-in-class"><a href="#References-in-class" class="headerlink" title="References in class"></a>References in class</h3><h4 id="Asset-References"><a href="#Asset-References" class="headerlink" title="Asset References"></a>Asset References</h4><p>:warning: Preferred mehtod is to use <strong>Blueprint</strong> to configure asset properties.</p>
+<p>Hardcoded references are supported while asset references in class ideally do not exist. You can use <strong>ConstructorHelpers::FObjectFinder</strong> to find a specified objects in content packages.</p>
+<h4 id="Class-Referneces"><a href="#Class-Referneces" class="headerlink" title="Class Referneces"></a>Class Referneces</h4><p>Most cases, <strong>StaticClass()</strong> will work to get a UClass</p>
+<h4 id="Component-and-Sub-Objects-references"><a href="#Component-and-Sub-Objects-references" class="headerlink" title="Component and Sub-Objects references"></a>Component and Sub-Objects references</h4><p>Generally create component(by using <strong>CreateDefaultSubobject<Component>()</strong>) subobjects and attach them to actor’s hierarchy can also be done in <strong>constructor</strong>, in order to ensure the components are always properly create, destroyed and garbage-collected, <strong>we should store the pointer to these components in the class as a UPROPERTY</strong>.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">UCLASS</span>()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">AWindPointSource</span> : <span class="keyword">public</span> AActor</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">GENERATED_BODY</span>()</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">	<span class="built_in">UPROPERTY</span>()</span><br><span class="line">	UWindPointSourceComponent* WindPointSource;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">AWindPointSource::<span class="built_in">AWindPointSource</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// Create a new component and give it a name.</span></span><br><span class="line">	WindPointSource = <span class="built_in">CreateDefaultSubobject</span>&lt;UWindPointSourceComponent&gt;(<span class="built_in">TEXT</span>(<span class="string">&quot;WindPointSourceComponent0&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Unreal-Header-Tool"><a href="#Unreal-Header-Tool" class="headerlink" title="Unreal Header Tool"></a>Unreal Header Tool</h3><p>a certain header file structure for UHT to perform preprocessing step in order to harness the functionality provided by UObject.</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"> </span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&#x27;Object.h&#x27;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&#x27;MyObject.generated.h&#x27;</span></span></span><br><span class="line"></span><br><span class="line"><span class="built_in">UCLASS</span>()</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MYPROJECT_API</span> UMyObject : <span class="keyword">public</span> UObject</span><br><span class="line">&#123;</span><br><span class="line">	<span class="built_in">GENERATED_BODY</span>()</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -181,14 +233,49 @@
 <li>MYPROJECT_API: expose the class to other modules</li>
 <li>GENERATED_BODY(): sets up the class to support the infrastructure required by the engine</li>
 </ul>
-<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><h3 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h3><h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><h2 id="Reflection-System"><a href="#Reflection-System" class="headerlink" title="Reflection System"></a>Reflection System</h2><h3 id="C-Refelction-System"><a href="#C-Refelction-System" class="headerlink" title="C++ Refelction System"></a>C++ Refelction System</h3><h3 id="unreal-engine-refelction-system"><a href="#unreal-engine-refelction-system" class="headerlink" title="unreal engine refelction system"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/reflection-system-in-unreal-engine?application_version=5.2">unreal engine refelction system</a></h3><p><strong>UCLASS</strong> macro:</p>
+<h3 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h3><ol>
+<li>Integer as <strong>Bitmasks</strong>: unreal support us with many features for better enums utilizing, there are many ways you can defines enum as <strong>bitmasks enums</strong>:</li>
+</ol>
+<ul>
+<li><strong>Meta tag “Bitflags”</strong> in <strong>UENUM</strong> and <strong>Bitmask</strong> in <strong>UPARAM</strong> </li>
+<li><strong>ENUM_CLASS_FLAGS()</strong> macro on a defined enum</li>
+<li><strong>BitmaskEnum &#x3D; “name of a enum”</strong> meta tag in <strong>UPROPERTY</strong> to let a variable to use enum and exposed in the editor</li>
+</ul>
+<p>You can read some <strong>Bitmask enums examples</strong> in the last part.</p>
+<ol start="2">
+<li>String: 4 main string in unreal</li>
+</ol>
+<ul>
+<li>FString: dynamic array of chars</li>
+<li>FName: an <strong>immutable case-insensitive</strong> string</li>
+<li>FText: localized text, for example, display different languages based on the user setting</li>
+<li>TEXT() macro: TCHAR type for characters, it’s the most uses</li>
+</ul>
+<ol start="3">
+<li><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-uproperties?application_version=5.2">Properties specifiers and metadata specifiers</a></li>
+</ol>
+<h3 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h3><h3 id="Functions"><a href="#Functions" class="headerlink" title="Functions"></a>Functions</h3><h2 id="Reflection-System"><a href="#Reflection-System" class="headerlink" title="Reflection System"></a>Reflection System</h2><h3 id="C-Refelction-System"><a href="#C-Refelction-System" class="headerlink" title="C++ Refelction System"></a>C++ Refelction System</h3><h3 id="Unreal-engine-refelction-system"><a href="#Unreal-engine-refelction-system" class="headerlink" title="Unreal engine refelction system"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/reflection-system-in-unreal-engine?application_version=5.2">Unreal engine refelction system</a></h3><p><strong>UCLASS</strong> macro:</p>
 <ul>
 <li>makes UObject visible to UE</li>
 <li>support <a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/class-specifiers?application_version=5.2">Class and Metadata Specifiers</a> </li>
 <li>tag custom classes derived from UObject</li>
 <li>make custom classes awared by <a href="#UObject-Handling-System">UObject Handling System</a></li>
 </ul>
-<h3 id="UObject-Handling-System"><a href="#UObject-Handling-System" class="headerlink" title="UObject Handling System"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-object-handling-in-unreal-engine?application_version=5.2">UObject Handling System</a></h3><h3 id="Garbage-Collection-System"><a href="#Garbage-Collection-System" class="headerlink" title="Garbage Collection System"></a><a target="_blank" rel="noopener" href="https://unrealcommunity.wiki/garbage-collection-36d1da">Garbage Collection System</a></h3><h2 id="UE-Smart-Pointer-Library"><a href="#UE-Smart-Pointer-Library" class="headerlink" title="UE Smart Pointer Library"></a>UE Smart Pointer Library</h2>
+<h3 id="UObject-Handling-System"><a href="#UObject-Handling-System" class="headerlink" title="UObject Handling System"></a><a target="_blank" rel="noopener" href="https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-object-handling-in-unreal-engine?application_version=5.2">UObject Handling System</a></h3><p><strong>UCLASS, UPROPERTY, UFUNTION</strong> make classes, properties and functions can be awared by unreal engine and implement a lot of features under-the-hood for them:</p>
+<ul>
+<li>automatic properties initialization</li>
+<li>automatic references updating</li>
+<li>serialization</li>
+<li>garbage collection</li>
+</ul>
+<h3 id="Garbage-Collection-System"><a href="#Garbage-Collection-System" class="headerlink" title="Garbage Collection System"></a><a target="_blank" rel="noopener" href="https://unrealcommunity.wiki/garbage-collection-36d1da">Garbage Collection System</a></h3><h2 id="Things-that-might-be-new-to-you"><a href="#Things-that-might-be-new-to-you" class="headerlink" title="Things that might be new to you"></a>Things that might be new to you</h2><ol>
+<li><strong>Bitmask</strong> in unreal engine</li>
+</ol>
+<p>8bit to store maximum 256 enums, data base is better when the enum values are greater than some threshold</p>
+<p>bitflag enums, for example, in a tile game you can represent 8 different combination with 8 bitflat enums, in c++ code, you can make 64 differenct combinations when using uint64. And bitflag can be also used as a constrains on different types of tiles, like it doesn’t make scene ocean tiles are the neighbour of desert tiles.</p>
+<p>use hexadecimal notion to specify the value</p>
+<p>example: damage on different human part</p>
+
     </div>
 
     
