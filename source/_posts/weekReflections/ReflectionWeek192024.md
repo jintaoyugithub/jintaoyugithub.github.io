@@ -52,65 +52,47 @@ cover_image: /imgs/coverImgs/week192024.jpg
 
 本周的用时分析如下所示：
 
-- Study/Work
+| Study/Work               | time spend  | Reading                  | time spend  | Entertainment     | time spend  | Miscellaneous              | time spend  |
+|--------------------------|-------------|--------------------------|-------------|-------------------|-------------|----------------------------|-------------|
+| Axis VR project开会      | 01h 14 mins | 金钱心理学               | 00h 32 mins | 看youtube/bilibli | 09h 00 mins | 徐帅学长user test          | 01h 15 mins |
+| unreal文档阅读           | 02h 03 mins | 笔记思考书               | 02h 02 mins | 午觉              | 03h 40 mins | 做饭                       | 02h 02 mins |
+| unreal文档整理           | 01h 36 mins | how to study in colledge | 01h 54 mins | 聚餐              | 04h 30 mins | 和小桃视频讨论正事         | 02h 00 mins |
+| Blender VR project       | 01h 42 mins |                          |             | 拍摄              | 04h 20 mins | 逛超市                     | 00h 40 mins |
+| Tiny Renderer            | 04h 57 mins |                          |             | 《三体》第一集    | 01h 02 mins | 买pizza                    | 00h 35 mins |
+| cmake                    | 01h 53 mins |                          |             |                   |             | 打扫房间卫生               | 00h 37 mins |
+| theorital design essay   | 02h 06 mins |                          |             |                   |             | corridor semester cleaning | 02h 48 mins |
+| unreal lumen技术讲解视频 | 02h 22 mins |                          |             |                   |             | 和我妈打电话               | 01h 18 mins |
+| unreal nanit技术讲解视频 | 01h 01 mins |                          |             |                   |             |                            |             |
+| 写反思                   | 02h 28 mins |                          |             |                   |             |                            |             |
+| 其他                     | 00h 53 mins |                          |             |                   |             |                            |             |
+| total                    | 22h 15 mins | total                    | 04h 26 mins | total             | 22h 32 mins | total                      | 09h 59 mins |
+| average                  | 03h 42 mins | average                  | 00g 44 mins | average           | 03h 45 mins | average                    | 01h 40 mins |
 
-| event                    | time spend  |
-|--------------------------|-------------|
-| Axis VR project开会      | 01h 14 mins |
-| unreal文档阅读           | 02h 03 mins |
-| unreal文档整理           | 01h 36 mins |
-| Blender VR project       | 01h 42 mins |
-| Tiny Renderer            | 04h 57 mins |
-| cmake                    | 01h 53 mins |
-| theorital design essay   | 02h 06 mins |
-| unreal lumen技术讲解视频 | 02h 22 mins |
-| unreal nanit技术讲解视频 | 01h 01 mins |
-| 写反思                   | 02h 28 mins |
-| 其他                     | 00h 53 mins |
-| total                    | 22h 15 mins |
-| average                  | 03h 42 mins |
+整体来说有变好的趋势，这周的工作时间相较上周提升不少，平均提升了1个小时左右的时间，但是这周看教学视频，看文档的时间偏多，实际动手操作写代码时间很少。读书的时间极具下降，感觉应该拿来读书的时间全被看视频占去了，我很想用阅读取代看视频，但是看视频这个习惯实在扎根的太严重了，一时间想快速取代的想法估计行不通。
+说到这里吃饭的时候看视频也是一件很头疼的事情，首先我要花很多的时间找下饭视频，然后就是吃完饭了也不愿意停下看视频这个动作，个人估量，我平均每天吃饭的时间可能还在一个小时可能还多。我现在尝试的方法是使用Microsoft family safe来限制我看视频的时间段，也就是吃饭的时候视频网站是不允许打开的。但是我又害怕就算我电脑打不开，我手机呢，我ipad呢我总能找到一个方法去看视频，就像我之前想着重新创建一个b站账号，想着关注一些科普up主，就算看视频也是看些有用的，结果还是不尽人意。我不看b站了，我会去找别的视频看。说到底还是我个人自制力太差了，所以我下一周打算认真阅读《自制力》这本书，帮助我找到一些启发，或者是克制我自己的一些办法。
 
-- Reading
-
-| event                    | time spend  |
-|--------------------------|-------------|
-| 金钱心理学               | 00h 32 mins |
-| 笔记思考书               | 02h 02 mins |
-| how to study in colledge | 01h 54 mins |
-| total                    | 04h 26 mins |
-| average                  | 00h 44 mins |
-
-- Workout
-
-None
-
-- Entertainment
-
-| event          | time spend  |
-|----------------|-------------|
-| 看youtube/bilibli             | 09h 00 mins |
-| 午觉           | 03h 40 mins |
-| 聚餐           | 04h 30 mins |
-| 拍摄           | 04h 20 mins |
-| 《三体》第一集 | 01h 02 mins |
-| total          | 22h 32 mins |
-| average        | 03h 45 mins |
+这周的平均娱乐时间比之前下降了一个小时，但是看视频的时间还是9个小时，不过之前是5天看9个小时，现在是6天看9个小时，但是其实这里的时间还是记少了的，还不包括我工作期间的休息看手机刷ins的时间。不过总之是个好兆头，我现在主要想做的就是尽量瓜分看视频的时间，就算不是去看书，也想把他转变成别的事情，我现在平均每天看视频的时间是将近一个半小时，我个人觉得实在是太多了，这个还不包括我吃饭的时候看视频的时间，如果加上，恐怕这世间难以估量。哎，如果我每天把这个看视频的时间省下来，我每天都可以陪小桃看一场电影呢，然后其他时间就是看书，工作，看书，工作的循环，但是想做到这样也是比较困哪的，要规划好一步一步才行，如果一下子迈的步子太大，容易完不成，然后失去信息最后不做这种死循环。
 
 
-- Miscellaneous
 
-| event                      | time spend  |
-|----------------------------|-------------|
-| 徐帅学长user test          | 01h 15 mins |
-| 做饭                       | 02h 02 mins |
-| 和小桃视频讨论正事         | 02h 00 mins |
-| 逛超市                     | 00h 40 mins |
-| 买pizza                    | 00h 35 mins |
-| 打扫房间卫生               | 00h 37 mins |
-| corridor semester cleaning | 02h 48 mins |
-| 和我妈打电话               | 01h 18 mins |
-| total                      | 09h 59 mins |
-| average                    | 01h 40 mins |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

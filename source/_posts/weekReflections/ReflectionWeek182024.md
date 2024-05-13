@@ -52,48 +52,17 @@ DJ台前挤满了人，我还在那里碰到了李苏，曾哥和一个读博的
 
 - Study/Work
 
-| event                    | time spend  |
-|--------------------------|-------------|
-| VR meeting               | 00h 13 mins |
-| unreal doc reading&notes | 07h 42 mins |
-| git learning             | 02h 11 mins |
-| VR Axis project models   | 03h 41 mins |
-| total                    | 13h 47 mins |
+| Study/Work               | time spend  | Reading       | time spend | Entertainment           | time spend  | Miscellaneous       | tiem spend |
+|--------------------------|-------------|---------------|------------|-------------------------|-------------|---------------------|------------|
+| VR meeting               | 00h 13 mins | effective c++ | 3h 22 mins | average meal time       | 1h 00 mins  | supermarket         | 0h 40 mins |
+| unreal doc reading&notes | 07h 42 mins | 金钱心理学    | 2h 14 mins | Movie 料理鼠王          | 1h 50 mins  | commuting           | 0h 21 mins |
+| git learning             | 02h 11 mins | 奇特的一生    | 0h 50 mins | go for a walk           | 1h 15 mins  | buy computer stand  | 0h 35 mins |
+| VR Axis project models   | 03h 41 mins |               |            | bilibili&youtube videos | 9h 29 mins  | chat with Yifeng Lu | 1h 02 mins |
+|                          |             |               |            | overslept nap           | 5h 52 mins  | cleaning week       | 1h 16 mins |
+|                          |             |               |            | dinner with friends     | 3h 40 mins  |                     |            |
+| total                    | 13h 47 mins |               | 6h 26 mins |                         | 22h 54 mins |                     | 3h 56 mins |
+| average                  | 02h 45 mins |               | 1h 17 mins |                         | 04h 35 mins |                     | 0h 47 mins |
 
-- Reading
-
-| event         | time spend |
-|---------------|------------|
-| effective c++ | 3h 22 mins |
-| 金钱心理学    | 2h 14 mins |
-| 奇特的一生    | 0h 50 mins |
-| total         | 6h 26 mins |
-
-- Workout
-
-None
-
-- Entertainment
-
-| event                   | time spend  |
-|-------------------------|-------------|
-| average meal time       | 1h 00 mins  |
-| Movie 料理鼠王          | 1h 50 mins  |
-| go for a walk           | 1h 15 mins  |
-| bilibili&youtube videos | 9h 29 mins  |
-| overslept nap           | 5h 52 mins  |
-| dinner with friends     | 3h 30 mins  |
-| total                   | 22h 54 mins |
-- Miscellaneous
-
-| event               | time spend |
-|---------------------|------------|
-| supermarket         | 0h 40 mins |
-| commuting           | 0h 21 mins |
-| buy computer stand  | 0h 35 mins |
-| chat with Yifeng Lu | 1h 02 mins |
-| cleaning week       | 1h 16 mins |
-| total               | 3h 56 mins |
 
 很明显，**玩的时间要比读书和学习工作加起来都多**，其中看视频占据了主要的时间话费，但是目前为止没有想到一个很好的方法来**限制我看视频的时间**，回想起我每次看视频超市的前置动作一般都是**学累了，然后想着看会视频**，最近都是用ipad看的，然后就躺在床上看一些无关视频，比如红警呀，测评，一些小视频等等。一看就**容易超时**而且不愿意撒手，明明计划李写着休息的方式最好用读书或者看科普视频，但是我发现就算我创建了一个新的b站账号希望我就算看视频也多看一些科普视频，也没有阻止我老是会去看一些碎片化的视频，浏览器中的gpu架构科普，c++深入的指针讲解等等我都一直开着，但是就是不想看。还有就是吃饭的时候，老是希望能找个好看的**下饭，花了很多时间找视频**不说，就算找到了，**吃完饭了也还是继续看没有想停的意思**，我想过把吃饭看视频的习惯改成吃饭看书或者听书，感觉效果不明显，首先目前没有哪本书会精彩到让我吃饭都想看，其次想象力带来的刺激远远没有直观的视频带来的视觉效果来着生动，所以我在考虑之后把吃饭看视频的习惯改掉，就吃饭不做其他事情。
 
