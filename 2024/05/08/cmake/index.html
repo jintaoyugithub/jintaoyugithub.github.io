@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head prefix="og: https://ogp.me/ns#">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  
+  <title>Cmake - jintaoyu blog</title>
+  
+    <link rel="shortcut icon" href="/imgs/icons/blog.png">
+  
+  
+    <link rel='manifest' href='/manifest.json'>
+  
+
+  
+  
+  
+  <meta property="og:title" content="Cmake - jintaoyu blog" />
+  
+  <meta property="og:type" content="article" />
+  
+  <meta property="og:url" content="https://jintaoyugithub.github.io/2024/05/08/cmake/index.html" />
+  
+  <meta property="og:image" content="/imgs/coverImgs/cmake.png" />
+  
+  <meta property="og:article:published_time" content="2024-05-07T22:00:26.000Z" />
+  
+  <meta property="og:article:author" content="Jintao Yu" />
+  
+  
+
+  
+<link rel="stylesheet" href="/css/var.css">
+
+  
+<link rel="stylesheet" href="/css/main.css">
+
+  
+<link rel="stylesheet" href="/css/typography.css">
+
+  
+<link rel="stylesheet" href="/css/code-highlighting.css">
+
+  
+<link rel="stylesheet" href="/css/components.css">
+
+  
+<link rel="stylesheet" href="/css/nav.css">
+
+  
+<link rel="stylesheet" href="/css/paginator.css">
+
+  
+<link rel="stylesheet" href="/css/footer.css">
+
+  
+<link rel="stylesheet" href="/css/post-list.css">
+
+  
+  
+<link rel="stylesheet" href="/css/rainbow-banner.css">
+
+  
+  
+  
+<link rel="stylesheet" href="/css/toc.css">
+
+  
+  
+  
+  
+  
+<link rel="stylesheet" href="/css/post.css">
+
+  
+  
+  
+  
+  
+
+  
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.0.0"></head>
+    <body
+        data-color-scheme="auto"
+        data-uppercase-categories="true"
+        
+        data-rainbow-banner="true"
+        data-rainbow-banner-shown="auto"
+        data-rainbow-banner-month="6"
+        data-rainbow-banner-colors="#e50000,#ff8d00,#ffee00,#008121,#004cff,#760188"
+        
+        data-config-root="/"
+        
+        data-toc="true"
+        data-toc-max-depth="2"
+        
+        
+    >
+        <nav id="theme-nav">
+    <div class="inner">
+        <a class="title" href="/">Blog</a>
+        <div class="nav-arrow"></div>
+        <div class="nav-items">
+            <a class="nav-item nav-item-home" href="/">Home</a>
+            
+            
+            <a class="nav-item" href="/archives">Archives</a>
+            
+            
+            
+            <a class="nav-item" href="/about">About</a>
+            
+            
+            
+            <a class="nav-item nav-item-github nav-item-icon" href="https://github.com/MrWillCom" target="_blank" aria-label="GitHub">&nbsp;</a>
+            
+            
+            
+            <a class="nav-item nav-item-search nav-item-icon" href="/search" target="_blank" aria-label="Search">&nbsp;</a>
+            
+            
+        </div>
+    </div>
+</nav>
+        
+<article class="post">
+    <div class="meta">
+        
+
+        
+        <div class="date" id="date">
+            <span>May</span>
+            <span>8,</span>
+            <span>2024</span>
+        </div>
+        
+
+        <h2 class="title">Cmake</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="content">
+        <h2 id="Cmake-workflow"><a href="#Cmake-workflow" class="headerlink" title="Cmake workflow"></a>Cmake workflow</h2><p>Cmake: an open source, cross-platform build tool for most common programming languages</p>
+<p><strong>Basic workflow</strong>:</p>
+<ul>
+<li>write <strong>CmakeLists.txt</strong> file, following is the basic structure of it:</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># minimal version of cmake</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)</span><br><span class="line"><span class="comment"># project name</span></span><br><span class="line"><span class="keyword">project</span>(Hello)</span><br><span class="line"><span class="comment"># generate a executable applicatio</span></span><br><span class="line"><span class="comment"># parameters: binary file, cpp files...</span></span><br><span class="line"><span class="keyword">add_executable</span>(Hello hello.cpp)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>create <strong>build</strong> dir and generate makefile and other files in that dir: <strong>cmake -B build</strong> </li>
+<li>generate an executable application: <strong>cmake –build build</strong></li>
+</ul>
+<h3 id="Cmake-in-different-system"><a href="#Cmake-in-different-system" class="headerlink" title="Cmake in different system"></a>Cmake in different system</h3><ol>
+<li>Windows:</li>
+</ol>
+<ul>
+<li>prefer directly download <strong>binary files</strong> of cmake, easy to use</li>
+<li>takes <strong>MSVC</strong> as default generator in Windows</li>
+</ul>
+<ol start="2">
+<li>Linux:</li>
+</ol>
+<ul>
+<li>prefer download <strong>source code</strong> of cmake and manually compile them</li>
+<li>takes <strong>Unix Makefile</strong> as default generator in Windows</li>
+</ul>
+<h2 id="Grammar"><a href="#Grammar" class="headerlink" title="Grammar"></a>Grammar</h2><p>cmake command tool is constructed from 5 executable files:</p>
+<ul>
+<li>cmake </li>
+<li>ctest</li>
+<li>cpack</li>
+<li>cmake-gui</li>
+<li>ccmake</li>
+</ul>
+<p>Common grammar in <strong>CmakeLists&#x2F;.cmake</strong> files:</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># determine minimal version</span></span><br><span class="line"><span class="keyword">cmake_minimum_required</span>()</span><br><span class="line"><span class="comment"># print message</span></span><br><span class="line"><span class="keyword">message</span>()</span><br><span class="line"><span class="comment"># obtain variables in cmake file: $&#123;&#125;, for example, print path</span></span><br><span class="line"><span class="keyword">message</span>($ENV&#123;PATH&#125;)</span><br><span class="line"><span class="comment"># create a new env path in the scope of cmake file</span></span><br><span class="line"><span class="keyword">set</span>(ENV&#123;cXX&#125; <span class="string">&quot;g++&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Manipulating-varibles"><a href="#Manipulating-varibles" class="headerlink" title="Manipulating varibles"></a>Manipulating varibles</h3><ol>
+<li>Set()&#x2F;Unset()</li>
+</ol>
+<ul>
+<li>sinlge vlaue: set&#x2F;Unset(variable value)</li>
+<li>multi values: set&#x2F;Unset(variable value1 value2)</li>
+</ul>
+<ol start="2">
+<li>List()</li>
+</ol>
+<h3 id="Workflow-control"><a href="#Workflow-control" class="headerlink" title="Workflow control"></a>Workflow control</h3><ol>
+<li><strong>if control</strong></li>
+</ol>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># all the key words</span></span><br><span class="line"><span class="keyword">if</span>()</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">elseif</span>()</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">endif</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># common comparison symbols </span></span><br><span class="line"><span class="comment"># NOT, AND, OR, LESS, EQUAL</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><strong>loop control</strong></li>
+</ol>
+<ul>
+<li>foreach</li>
+</ul>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># three major ways to use foreach</span></span><br><span class="line"><span class="comment"># 1st</span></span><br><span class="line"><span class="keyword">foreach</span>(&lt;variable&gt; RANGE &lt;range&gt;)</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">endforeach</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2nd</span></span><br><span class="line"><span class="keyword">foreach</span>(&lt;variable&gt; IN &lt;<span class="keyword">List</span> variable&gt; &lt;extra items&gt;)</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">endforeach</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3rd, zip operatio.&gt;n</span></span><br><span class="line"><span class="keyword">foreach</span>(&lt;variable&gt; IN ZIP_LISTS &lt;List1&gt; ...)</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">endforeach</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>while: <strong>not</strong> recommanded</li>
+</ul>
+<ol start="3">
+<li><strong>function</strong></li>
+</ol>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span>(&lt;funcName&gt; [&lt;args&gt; ...])</span><br><span class="line">    <span class="comment"># ...</span></span><br><span class="line"><span class="keyword">endfunction</span>()</span><br><span class="line"></span><br><span class="line"><span class="comment"># use the function</span></span><br><span class="line">funcName(&lt;agrs&gt; ...)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p><strong>scope</strong> </p>
+</li>
+<li><p><strong>macro</strong></p>
+</li>
+</ol>
+<h2 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h2><p>-P .cmake files</p>
+<p>-G “compiler name”</p>
+<h2 id="4-main-ways-to-Build"><a href="#4-main-ways-to-Build" class="headerlink" title="4 main ways to Build"></a>4 main ways to Build</h2><h2 id="Static-Dynamic-link-lib"><a href="#Static-Dynamic-link-lib" class="headerlink" title="Static&#x2F;Dynamic link lib"></a>Static&#x2F;Dynamic link lib</h2><h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><h2 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h2><ol>
+<li>C&#x2F;CPP生成.exe文件流程</li>
+</ol>
+<ul>
+<li>预处理</li>
+<li>编译</li>
+<li>汇编</li>
+<li>链接</li>
+</ul>
+<ol start="2">
+<li>Cmake, Makefile and Make</li>
+</ol>
+
+    </div>
+
+    
+    <div class="about">
+        <h1>About this Post</h1>
+        <div class="details">
+            <p>This post is written by Jintao Yu, licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc/4.0">CC BY-NC 4.0</a>.</p>
+        </div>
+        
+    </div>
+    
+
+    <div class="container post-prev-next">
+        
+        <a href="/2024/05/12/weekReflections/ReflectionWeek192024/" class="next">
+            <div>
+                <div class="text">
+                    <p class="label">Next</p>
+                    <h3 class="title">Reflection on Week 19, 2024</h3>
+                </div>
+            </div>
+        </a>
+        
+        
+        <a href="/2024/05/06/weekReflections/ReflectionWeek182024/" class="prev">
+            <div>
+                <div class="text">
+                    <p class="label">Previous</p>
+                    <h3 class="title">Reflection on Week 18, 2024</>
+                </div>
+            </div>
+        </a>
+        
+    </div>
+
+    
+        
+        
+    
+</article>
+
+        <footer>
+    <div class="inner">
+        <div class="links">
+            
+        </div>
+        <span>&copy; 2024 Jintao Yu<br>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> </span>
+        
+        
+            <br>
+            <div class="color-scheme-toggle" role="radiogroup" id="theme-color-scheme-toggle">
+                <label>
+                    <input type="radio" value="light">
+                    <span>Light</span>
+                </label>
+                <label>
+                    <input type="radio" value="dark">
+                    <span>Dark</span>
+                </label>
+                <label>
+                    <input type="radio" value="auto">
+                    <span>Auto</span>
+                </label>
+            </div>
+        
+    </div>
+</footer>
+
+
+        
+<script src="/js/main.js"></script>
+
+        
+        
+        
+
+        
+        <script src="https://unpkg.com/scrollreveal"></script>
+        <script>
+            window.addEventListener('load', () => {
+                ScrollReveal({ delay: 250, reset: true, easing: 'cubic-bezier(0, 0, 0, 1)' })
+                ScrollReveal().reveal('.post-list-item .cover-img img')
+                ScrollReveal().reveal('.post-list-item, .card, .content p img, .content .block-large img', { distance: '60px', origin: 'bottom', duration: 800 })
+            })
+        </script>
+        
+    </body>
+</html>

@@ -20,7 +20,7 @@
   
   <meta property="og:type" content="article" />
   
-  <meta property="og:url" content="https://jintaoyugithub.github.io/2024/05/05/uerendoc/index.html" />
+  <meta property="og:url" content="https://jintaoyugithub.github.io/2024/05/05/unrealEngine/uerendoc/index.html" />
   
   <meta property="og:image" content="/imgs/coverImgs/ueren.png" />
   
@@ -146,7 +146,81 @@
     <div class="divider"></div>
 
     <div class="content">
-        
+        <h2 id="notes-from-lumen-inside-unreal-live-stream"><a href="#notes-from-lumen-inside-unreal-live-stream" class="headerlink" title="notes from lumen inside unreal live stream"></a>notes from lumen inside unreal live stream</h2><p>Mesh Distance Fields</p>
+<ul>
+<li>sparse representation</li>
+</ul>
+<p>Surface cache</p>
+<ul>
+<li>capture mesh at low resolution into <strong>atlas</strong> </li>
+<li>nanite renders into all the cards in parallel </li>
+<li>lumen have to work with nanite when using high-poly assets</li>
+<li>the whole scene will be computed direct lighting + low quality gi gather for multi-bounce</li>
+</ul>
+<p>optimization</p>
+<ul>
+<li>merge all mdf into global distance field</li>
+<li>merge surface cache into voxel lighting</li>
+<li>detail trace for first 2 meters, and then gdf, but don’t work for scene that have too much overlapping</li>
+</ul>
+<p>hardware ray tracing</p>
+<ul>
+<li>nanite provide a proxy geometry version that hardware ray tracing can work on that</li>
+<li>cost a lot when do dynamic mesh, like skin, since they deformed. we have to calculate the ray traicng structure every frame(BVH)</li>
+<li>better to have less overlap mesh</li>
+</ul>
+<p>half a ray per pixel??? but indoors nedd 200+ for quality</p>
+<p>2 solution:</p>
+<ul>
+<li>irradiance fields</li>
+<li>screen space denoiser</li>
+</ul>
+<p>lumen use screen space radiance caching: select some amount of pixels, shoot a bunch of ray from them to get a stable light, and interpolate the result with nanite mesh.</p>
+<p>common screen space denoiser won’t work in ue5 since they want high detailed mesh, spd will reuse the hit point with same normal, but ue5 will say no since each pixel have different normal as they’re quite detailed.</p>
+<p>Emissive</p>
+<ul>
+<li>can’t replace light with emissive mesh</li>
+<li>large dim emissive and light source + small dim emissive will work</li>
+</ul>
+<p>Base color:</p>
+<ul>
+<li>base color has a huge impace on GI, the brighter the better</li>
+<li>indirected lit surface, as the lighting will bounce from all direction…..</li>
+</ul>
+<p>in reflection, hardware ray tracing really shines, but soft ray traicng in lumen has the pretty similar effect compare with hardware ray traicng</p>
+<p>what’s world space radiance caching?</p>
+<p>what’s atlas?</p>
+<p>what’s dfao?</p>
+<p>what’s instance static mesh?</p>
+<p>what’s final gather?</p>
+<p>process of propagating the light from the lumenScene to your final pixel on the screen</p>
+<p>what’s Material Parameter Collections?</p>
+<h2 id="notes-from-nanite-inside-unreal-live-stream"><a href="#notes-from-nanite-inside-unreal-live-stream" class="headerlink" title="notes from nanite inside unreal live stream"></a>notes from nanite inside unreal live stream</h2><p>nanite is completely gpu driven pipleline</p>
+<ul>
+<li>scene is fullly in gpu memory</li>
+<li>sparsely updated where things changed, which mean only the changes will uploaded to gpu, not every frame</li>
+<li>all vertex&#x2F;index data store in a large resource</li>
+<li>call drawcall function for the whole scene not individual object, since we don’t want to call drawcall function on that large amount of triangles, we can use this method to call drawcall only once.</li>
+<li>triangle cluster culling, group triangles into clusters, and do culling for each clusters</li>
+</ul>
+<p>Decouple visibility from material</p>
+<p>why? watch nanite inside unreal video for more(locate to 1:01:00)</p>
+<p>solution</p>
+<ul>
+<li>using deferred materials</li>
+<li>1 drawcall each material</li>
+</ul>
+<p>got a problem with sub-linera scaling with triangles</p>
+<p>cluster hierarchy on a cluster basis to decide the lod a each cluster</p>
+<p>nanite try to rendering pixle size triangel, but tiny triangles are terrible for typical rasterizer, solution to this is software rasterizer</p>
+<p>hardware rasterizer for big triangel, software rasterizer for tiny triangels</p>
+<p>16k x 16k shadow maps for every light</p>
+<h3 id="What’s"><a href="#What’s" class="headerlink" title="What’s"></a>What’s</h3><ul>
+<li>megascans asset</li>
+<li>RVT</li>
+<li>per view on gpu</li>
+</ul>
+
     </div>
 
     
@@ -161,7 +235,7 @@
 
     <div class="container post-prev-next">
         
-        <a href="/2024/05/06/ReflectionWeek182024/" class="next">
+        <a href="/2024/05/06/weekReflections/ReflectionWeek182024/" class="next">
             <div>
                 <div class="text">
                     <p class="label">Next</p>
@@ -171,7 +245,7 @@
         </a>
         
         
-        <a href="/2024/05/04/uedoc/" class="prev">
+        <a href="/2024/05/04/unrealEngine/uedoc/" class="prev">
             <div>
                 <div class="text">
                     <p class="label">Previous</p>
