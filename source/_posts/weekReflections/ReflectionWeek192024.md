@@ -88,7 +88,7 @@ None
 
 | event          | time spend  |
 |----------------|-------------|
-| 看视频         | 09h 00 mins |
+| 看youtube/bilibli             | 09h 00 mins |
 | 午觉           | 03h 40 mins |
 | 聚餐           | 04h 30 mins |
 | 拍摄           | 04h 20 mins |
