@@ -1,146 +1,72 @@
 ---
-title: Cmake
+title: Modern Cmake
 katex: false
 mathjax: false
 date: 2024-05-08 00:00:26
 tags:
 cover_image: /imgs/coverImgs/cmake.jpeg
 ---
+# Basic 
 
-## Cmake workflow
+`Cmake`: an open source, cross-platform build tool for most common programming languages.
 
-Cmake: an open source, cross-platform build tool for most common programming languages
+`Basic Workflow` 
+- write an **CmakeLists.txt** file
+- create the *build* dir and generate makefile with command: *cmake -B build* 
+- compile all the source with command: *cmake --build build* 
 
-**Basic workflow**:
-- write **CmakeLists.txt** file, following is the basic structure of it:
+`Note:` 
 
-```cmake
-# minimal version of cmake
-cmake_minimum_required(VERSION 3.20)
-# project name
-project(Hello)
-# generate a executable applicatio
-# parameters: binary file, cpp files...
-add_executable(Hello hello.cpp)
+- Cmake has encapsulated the underlying commands to compile the source code, no matter you're using makefile, ninja in unxi system or mingw, msvc in windows, you can use *cmake --build build* to run the compilation.
+
+- Default *Generator* in different system is different:
+  
+Windows takes **MSVC** as default, if you want to generate makefile, you should specify generator in the command:
+```sh
+cmake -S <path/to/source> -B<path/to/build> -G "Unix Makefile"
+# or you can use
+cmake -S <path/to/source> -B<path/to/build> -G "MinGW Makefile"
 ```
-- create **build** dir and generate makefile and other files in that dir: **cmake -B build** 
-- generate an executable application: **cmake --build build** 
+While MacOS/Linux takes **Unix Makefile** as default generator.
 
-### Cmake in different system
-1. Windows:
-- prefer directly download **binary files** of cmake, easy to use
-- takes **MSVC** as default generator in Windows
+# Install
 
-2. Linux:
-- prefer download **source code** of cmake and manually compile them
-- takes **Unix Makefile** as default generator in Windows
+There are many ways you can download cmake depending on which system you're using.
 
-## Grammar
-
-cmake command tool is constructed from 5 executable files:
-- cmake 
-- ctest
-- cpack
-- cmake-gui
-- ccmake
-
-Common grammar in **CmakeLists/.cmake** files:
-
-```cmake
-# determine minimal version
-cmake_minimum_required()
-# print message
-message()
-# obtain variables in cmake file: ${}, for example, print path
-message($ENV{PATH})
-# create a new env path in the scope of cmake file
-set(ENV{cXX} "g++")
+- Windows:
+```sh
+scoop install cmake
 ```
-
-### Manipulating varibles
-
-1. Set()/Unset()
-- sinlge vlaue: set/Unset(variable value)
-- multi values: set/Unset(variable value1 value2)
-
-2. List()
-
-### Workflow control
-
-1. **if control**
-
-```cmake
-# all the key words
-if()
-    # ...
-elseif()
-    # ...
-else
-    # ...
-endif
-
-# common comparison symbols 
-# NOT, AND, OR, LESS, EQUAL
+- MacOS:
+```sh
+brew install cmake
 ```
-
-2. **loop control**
-- foreach
-
-```cmake
-# three major ways to use foreach
-# 1st
-foreach(<variable> RANGE <range>)
-    # ...
-endforeach
-
-# 2nd
-foreach(<variable> IN <List variable> <extra items>)
-    # ...
-endforeach
-
-# 3rd, zip operatio.>n
-foreach(<variable> IN ZIP_LISTS <List1> ...)
-    # ...
-endforeach
+- Linux: 
+```sh
+sudo apt install cmake
 ```
+You can also download the cmake with [Official package](https://cmake.org/download/). 
 
-- while: **not** recommanded
+# Better Project Structure
 
-3. **function**
 
-```cmake
+**function**
+
 function(<funcName> [<args> ...])
     # ...
 endfunction()
 
-# use the function
+use the function
 funcName(<agrs> ...)
-```
 
-4. **scope** 
+# Examples
 
+# References
 
-5. **macro** 
+* [Official Document](https://cmake.org/cmake/help/latest/) 
 
+* [An Introduction to Modern CMake](https://cliutils.gitlab.io/modern-cmake/) 
 
-## Command
+* [The process of c/cpp files to executable file](https://zhuanlan.zhihu.com/p/556641581) 
 
--P .cmake files
-
--G "compiler name"
-
-## 4 main ways to Build
-
-## Static/Dynamic link lib
-
-## Examples
-
-## Prerequisite
-
-1. C/CPP生成.exe文件流程
-- 预处理
-- 编译
-- 汇编
-- 链接
-
-2. Cmake, Makefile and Make
+* [Do's and Don'ts](https://cliutils.gitlab.io/modern-cmake/chapters/intro/dodonot.html) 
